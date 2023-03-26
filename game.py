@@ -20,9 +20,9 @@ class Game:
         return self.opponent_response
 
     def make_comparison(self, choice):
-        if (choice == 'R'):
+        if choice == 'R':
             choice = 'rock'
-        elif (choice == 'P'):
+        elif choice == 'P':
             choice = 'paper'
         else:
             choice = 'scissors'
@@ -62,53 +62,27 @@ class Game:
     def win(self):
         self.gamer_score += 1
         print("You win!")
-    
+
     def show_score(self):
         print("Current scoreboard")
-        print("Your score: {}" .format(self.gamer_score))
-        print("Opponent score: {}" .format(self.opponent_score))
-    
+        print(f"Your score: {self.gamer_score}")
+        print(f"Opponent score: {self.opponent_score}")
+
     def prompt_continue(self):
         print("Continue?")
         decision = input("[Y]es or [No] ").upper()
 
-        while (True):
-            if (decision == 'Y'):
+        while True:
+            if decision == 'Y':
                 break
-            elif (decision == 'N'):
+            if decision == 'N':
                 self.is_playing_game = False
                 break
-            else:
-                decision = input("Please press [Y]es to continue or [N]o quit... ").upper()
-                continue
+            decision = input("Please press [Y]es to continue or [N]o quit... ").upper()
+            continue
 
     def clear(self):
         if name == 'nt':
             _ = system('cls') # windows
         else:
             _ = system('clear') # linux, mac
-
-if __name__ == '__main__':
-
-    game = Game()
-
-    while game.in_game():
-        game.clear()
-        print("[R]ock, [P]aper, or [S]cissors?")
-        print("Press a letter representing your choice...")
-        choice = input("What is your choice? ")
-        choice = choice.upper()
-
-        if any([choice == 'R', choice == 'P', choice == 'S']):
-            game.clear()
-            game.make_comparison(choice)
-            game.show_score()
-            game.prompt_continue()
-        else:
-            game.clear()
-            print("[R]ock, [P]aper, or [S]cissors?")
-            print("Please enter legitimate choice")
-            continue
-
-    print("Thank you for playing!")
-    input("Press [ENTER] to exit.")
